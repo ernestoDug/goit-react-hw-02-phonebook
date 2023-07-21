@@ -12,7 +12,12 @@ padding-top: 80px;
 height: 100vh;
 }
 
+.formsWr
+{
+    composes: forms;
+    height: 200px;
 
+}
 
 
 .input

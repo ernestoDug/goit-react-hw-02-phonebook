@@ -1,15 +1,21 @@
+// import { nanoid } from 'nanoid'
+
+
+
 import  css from './ContactForm.module.css'
 
 
 const ContactForm = () => 
 {
     return (
-    <form  className={css.forms}>
+    <form  className={css.formsWr }>
     {/* onSubmit={this.handleSubmit} */}
     <label className={css.label}>
       Ім'я
       <input 
        className={css.input}
+    // const { login } = this.state;
+
         type="text"
         placeholder="Введіть ім'я"
         // value={login}
