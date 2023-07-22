@@ -1,26 +1,59 @@
 // import { nanoid } from 'nanoid'
-
-
+import { Component } from 'react';
 
 import  css from './ContactForm.module.css'
 
+const INITIAL_STATE = {
+  name: '',
+    number: '',
 
-const ContactForm = ({names, changer, number}) => 
-{
+};
+
+
+// форма
+export class ContactForm extends Component {
+
+  state = {...INITIAL_STATE };
+//  //  один змінювач на всих 
+ changer = event => {
+  const {name, value} = event.currentTarget;
+  // console.log( event.currentTarget.value)
+this.setState({[name]: value});
+
+};
+// відправник
+submiter = event => {
+  event.preventDefault();
+  const { name, number } = this.state;
+
+  // console.log(`${this.state.name}, ${this.state.number}`);
+// виклик методу з ап і передача йому стейту з форми для зберігання
+  this.props.formProps({ name, number });
+  // очисник 
+  this.reset();
+};
+
+// очисник
+reset = () => {
+  this.setState({ ...INITIAL_STATE });
+};
+ 
+  render() {
     return (
     <form  
+    onSubmit={this.submiter}
     className={css.formsWr }>
-    {/* onSubmit={this.handleSubmit} */}
     <label className={css.label}>
       Ім'я
       <input 
        className={css.input}
-          onChange = { changer }
-          names = { names }
-          pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+          onChange = { this.changer }
+          value = { this.state.name }
+          // pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+
           type="text"
         placeholder="Введіть ім'я"
-        title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
+        title="Ім'я може містити лише літери, апостроф, тире та пробіли. Наприклад Адріан, Джейкоб Мерсер, Шарль де Бац де Кастельмор д'Артаньян"
         name="name"
         required
       />
@@ -32,11 +65,11 @@ const ContactForm = ({names, changer, number}) =>
            className={css.input}
   type="tel"
   placeholder="Введіть номер телефону"
-  onChange = { changer }
-          number = { number }
+  onChange = { this.changer }
+  value = { this.state.number }
   name="number"
-  pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-  title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+  // pattern="[\+]\d{1}\s[\(]\d{3}[\)]\s\d{3}[\-]\d{2}[\-]\d{2}"
+  title="Номер телефону має складатися з цифр і може містити пробіли, тире, круглі дужки та починатися з +"
   required
 />
      
@@ -44,9 +77,9 @@ const ContactForm = ({names, changer, number}) =>
 
 
        <button className={css.buttons} type="submit">Додати контакт </button>
-    {/* {login} */}
   </form>)
   }
+}
 
 
 export default ContactForm
