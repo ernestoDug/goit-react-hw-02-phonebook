@@ -1,19 +1,20 @@
-import { nanoid } from 'nanoid';
+// import { nanoid } from 'nanoid';
 
 
-const ContactList = ({name, number}) =>
+const ContactList = (contacts) =>
 {
-    console.dir(ContactList)
+    console.log(contacts,"1111111111111111111111")
     return (
         <ul>
-<li id = {nanoid()}>
-
-{name}: {number}
-</li>
-
-    </ul>
-)
-}
+            sdsdds   
+               {/* {contacts.map(({ id, name }) => (
+                    <li key={id}>
+                        {name}
+          </li>        
+         ))} */}
+        </ul>
+     )
+               }
 
 
 export default ContactList
