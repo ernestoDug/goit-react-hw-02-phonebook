@@ -8,7 +8,7 @@ export class Filter extends Component {
     //  //  один змінювач на всих
     changer = event => {
       const { value } = event.target;
-      // console.log( event.currentTarget.value)
+      console.log( event.target.value, "evvvvvvvvvvvvv")
       this.setState({ filter: value });
     //   поверненя значення
       this.props.forFilter({ value });

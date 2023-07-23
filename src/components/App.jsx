@@ -38,14 +38,18 @@ export class App extends Component {
 
       // повернення списку післі чистки інпуту пошуку
       if(filtrDate.value === '' || filtrDate.value === ' ' ){
-                return {  contacts: BEGINCONT} 
-        
+       return {  contacts: BEGINCONT }
       }
-      else{
-      return {
-        filter: filtrDate.value,
+      
+      else {
+        return {
+          filter: filtrDate.value,
+          // else if ( filtrDate.value ){
+          //   return
+          // }
         // список післі фiльтрації без рeгістру
-         contacts: prevState.contacts.filter(contact =>  ((contact.name).toLowerCase()).includes(((filtrDate.value)).toLowerCase()))
+         contacts: prevState.contacts.filter(contact =>
+           ((contact.name).toLowerCase()).includes(((filtrDate.value)).toLowerCase()))
              }};
     });
     console.log(filtrDate.value, '777777777777777777777', this.state.contacts );
