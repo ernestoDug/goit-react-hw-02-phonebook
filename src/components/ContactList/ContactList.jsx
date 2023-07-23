@@ -1,22 +1,23 @@
 // import { nanoid } from 'nanoid';
-import css  from "./ContactList.module.css";
+import css from './ContactList.module.css';
 
-const ContactList = ({contacts}) =>
-{
-    console.log(contacts,"1111111111111111111111")
-    return (
-        <ul className={css.listCont}>
-            
+const ContactList = ({contacts, deliter}) => {
+  // console.log(contacts,"contacts")
+  return (
+    <ul className={css.listCont}>
+      {contacts.map(({ id, name, number }) => (
+        <li className={css.listContItem} key={id}>
+          {name}: {number} 
+          <button className={css.listContDell}
+        //   обов язково колбек для спрацювання по кліку
+          onClick={() =>  {deliter(id)}}
+          > 
+          <span className={css.listContDellX}>Х</span>
+          </button>
+        </li>
+      ))}
+    </ul>
+  );
+};
 
-               {contacts.map(({ id, name, number }) => (
-                    <li className={css.listContItem}
-                    key={id}>
-                        {name}: {number}
-          </li>        
-         ))}
-        </ul>
-     );
-               };
-
-
-export default ContactList
+export default ContactList;

@@ -11,7 +11,7 @@ const INITIAL_STATE = {
 // форма
 export class ContactForm extends Component {
   state = { ...INITIAL_STATE };
-  //  //  один змінювач на всих
+  //  //  один змінювач на двох
   changer = event => {
     const { name, value } = event.target;
     // console.log( event.currentTarget.value)
@@ -21,14 +21,11 @@ export class ContactForm extends Component {
   submiter = event => {
     event.preventDefault();
     const { name, number } = this.state;
-
-    // console.log(`${this.state.name}, ${this.state.number}`);
     // виклик методу з ап і передача йому стейту з форми для зберігання
     this.props.formProps({ name, number });
     // очисник
     this.reset();
   };
-
   // очисник
   reset = () => {
     this.setState({ ...INITIAL_STATE });
