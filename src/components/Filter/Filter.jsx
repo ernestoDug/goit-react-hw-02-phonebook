@@ -18,7 +18,8 @@ export class Filter extends Component {
   render() {
 return (
     <>  
-     <input name = "filter" 
+     <input
+      name = "filter" 
      className={css.filter}
     type="text"
     onChange={this.changer}
