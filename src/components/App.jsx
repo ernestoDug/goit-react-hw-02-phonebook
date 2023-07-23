@@ -15,19 +15,27 @@ import  css from './ContactForm/ContactForm.module.css'
  export class App extends Component {
 
   state = {
-    contacts: [],
-    filter: ''
+    contacts: [
+      {id: 'id-1', name: 'Rosie Simpson', number: '459-12-56'},
+      {id: 'id-2', name: 'Hermione Kline', number: '443-89-12'},
+      {id: 'id-3', name: 'Eden Clements', number: '645-17-79'},
+      {id: 'id-4', name: 'Annie Copeland', number: '227-91-26'},
+    ],
+        filter: ''
   }
   // метод для передачі пропсом формі і зберігання з форми
 formLister = data => {
-   this.setState({contacts: [
-    {id: nanoid(),
-      name: data.name, 
-      number: data.number} ]})    
-
-// console.log(this.state.contacts.name, "dfffffffffffff")
-// return contactListItem;
+this.setState(prevState => {
+  // оновлення списку доданих контактів
+    return ({ contacts: [...prevState.contacts, ...[
+      {id: nanoid(),
+        name: data.name, 
+        number: data.number}] ]
+      
+      }) ;
+  });
 }
+
 
 
   render() {
@@ -43,9 +51,10 @@ formLister = data => {
   // submiter = { this.submiter}
     />
   <h2>Контакти</h2>
-  {this.state.contacts &&  <ContactList
-   contacts =    {this.state.contacts}
-   /> }
+  {/* умова рендеру контактів */}
+  {this.state.contacts.length > 0 && ( <ContactList
+   contacts = {this.state.contacts}
+   />) }
  
   {/* <Filter/> */}
 </div>
