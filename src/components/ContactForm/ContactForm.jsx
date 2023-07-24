@@ -1,4 +1,6 @@
 // import { nanoid } from 'nanoid'
+import PropTypes from 'prop-types';
+
 import { Component } from 'react';
 
 import css from './ContactForm.module.css';
@@ -33,15 +35,15 @@ export class ContactForm extends Component {
 
   render() {
     return (
-      <form onSubmit={this.submiter} 
-      className={css.formsWr}>
+      <form onSubmit={this.submiter} className={css.formsWr}>
         <label className={css.label}>
           Ім'я
           <input
             className={css.input}
             onChange={this.changer}
             value={this.state.name}
-            // pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+            // pattern= "^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+            //  так чомусь помилка в консолі
             type="text"
             placeholder="Введіть ім'я"
             title="Ім'я може містити лише літери, апостроф, тире та пробіли. Наприклад Адріан, Джейкоб Мерсер, Шарль де Бац де Кастельмор д'Артаньян"
@@ -59,19 +61,26 @@ export class ContactForm extends Component {
             onChange={this.changer}
             value={this.state.number}
             name="number"
-            // pattern="\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+            // pattern= "\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+            // i так чомусь помилка в консолі
+
             title="Номер телефону має складатися з цифр і може містити пробіли, тире, круглі дужки та починатися з +"
             required
           />
         </label>
 
-        <button className={css.buttons} type="submit"
-        >
+        <button className={css.buttons} type="submit">
           Додати контакт{' '}
         </button>
       </form>
     );
   }
 }
+
+// // прототайпи
+ContactForm.propTypes = {
+  number: PropTypes.number,
+  name: PropTypes.string,
+};
 
 export default ContactForm;

@@ -1,3 +1,7 @@
+// import { nanoid } from 'nanoid';
+
+import PropTypes from 'prop-types';
+
 import css from './ContactItem.module.css';
 
 const ContactItem = ({ name, number, id, deliter }) => {
@@ -15,6 +19,11 @@ const ContactItem = ({ name, number, id, deliter }) => {
       </button>
     </li>
   );
+};
+
+ContactItem.propTypes = {
+  name: PropTypes.string,
+  number: PropTypes.string,
 };
 
 export default ContactItem;

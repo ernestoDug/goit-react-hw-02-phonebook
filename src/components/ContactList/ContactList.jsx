@@ -1,4 +1,6 @@
 // import { nanoid } from 'nanoid';
+import PropTypes from 'prop-types';
+
 import css from './ContactList.module.css';
 import ContactItem from './ContactItem';
 
@@ -7,18 +9,9 @@ const ContactList = ({ contacts, deliter }) => {
   return (
     <ul className={css.listCont}>
       {contacts.map(({ id, name, number }) => (
-        // <li className={css.listContItem} key={id}>
-        //   {name}: {number}
-        //   <button className={css.listContDell}
-        // //   обов язково колбек для спрацювання по кліку
-        //   onClick={() =>  {deliter(id)}}
-        //   >
-        //   <span className={css.listContDellX}>Х</span>
-        //   </button>
-        // </li>
         <ContactItem
-          key={id}
           id={id}
+          key={id}
           name={name}
           number={number}
           deliter={deliter}
@@ -26,6 +19,12 @@ const ContactList = ({ contacts, deliter }) => {
       ))}
     </ul>
   );
+};
+
+ContactList.propTypes = {
+  number: PropTypes.number,
+  name: PropTypes.string,
+  id: PropTypes.string,
 };
 
 export default ContactList;
