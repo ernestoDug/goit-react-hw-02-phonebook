@@ -7,33 +7,34 @@ import ContactForm from './ContactForm';
 import Filter from './Filter';
 import ContactList from './ContactList';
 
-let begincontact = [
+let begincontact = 
+[
   { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
   { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
   { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
   { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
-];
+]
+;
 
 export class App extends Component {
   state = {
     contacts: begincontact,
-
+    // begincontact,
     filter: '',
   };
   // метод для передачі пропсом формі і зберігання з форми
   formLister = data => {
-    this.setState(prevState => {
+    const addCopy = this.state.contacts.find(
       // заборона додавання однакових імен
-      const addCopy = prevState.contacts.find(
-        contact => contact.name.toLowerCase() === data.name.toLowerCase()
-      );
-      // console.log(addCopy, "copy")
-      if (addCopy) {
-        alert(`Уважніше,  ${data.name}  вже записана в контактах `);
-        return;
-      }
+      contact => contact.name.toLowerCase() === data.name.toLowerCase()
+    );
+    // console.log(addCopy, "copy")
+    if (addCopy) {
+      alert(`Уважніше,  ${data.name}  вже записана в контактах `);
+      return;
+    }
+    this.setState(prevState => {
       // console.log(data.name, "97879", contact.name)
-
       // оновлення списку доданих контактів після сабміту
       return {
         contacts: [
@@ -43,28 +44,36 @@ export class App extends Component {
                              };
     });
   };
+  // ****************************************************нашел
   // для фільтрації
-  filterContact = filtrDate => {
-    this.setState(prevState => {
-      // повернення списку після чистки інпуту пошуку
-      if (filtrDate.value === '' || filtrDate.value === ' ') {
-        return { contacts: begincontact };
-      }
-   
-      // список після фiльтрації без рeгістру
-      const filterCo = begincontact.filter(contact =>
-        contact.name.toLowerCase().includes(filtrDate.value.toLowerCase())
-      );
-      // console.log(addCopy, "copy")
-      if (filterCo) {
-        return { contacts: [...filterCo] };
-      }
-      
-    });
+  formFilter = event => {
+    const { name, value } = event.target;
+    // console.log( event.currentTarget.value)
+    this.setState({ [name]: value });
+        console.log(this.state.filter)
+  }
+    // *****************************************************наше конеу
+//     this.setState(prevState => {
+//             // оновлення списку доданих контактів після фільтру
+//       return {
+//         contacts: [
+//           ...this.contacts,
+//           ...[{ id: nanoid(), name: data.name, number: data.number }],
+//                         ],
+//                              };
+//     });
+  
 
-    console.log(filtrDate.value, '777777777777777777777', this.state.contacts);
-  };
-
+  //     const filterCo = begincontact.filter(contact =>
+  //       contact.name.toLowerCase().includes(filtrDate.value.toLowerCase())
+  //     );
+  //     // console.log(addCopy, "copy")
+  //     if (filterCo) {
+  //       return { contacts: [...filterCo] };
+  //     }
+  //         });
+  //   // console.log(filtrDate.value, '777777777777777777777', this.state.contacts);
+  // };
   //  для видалення
   deliter = id => {
     this.setState(prevState => ({
@@ -84,7 +93,7 @@ export class App extends Component {
         <h5>ЗНАЙдіть конТАКт за ім'ям</h5>
         <Filter
           // методпропс фільтрації
-          forFilter={this.filterContact}
+          filterProp={this.formFilter}
         />
         {/* умова рендеру контактів */}
 

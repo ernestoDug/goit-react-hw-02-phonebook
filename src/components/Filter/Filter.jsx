@@ -1,29 +1,18 @@
-import { Component } from 'react';
 
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 
 import css from './Filter.module.css';
 
-export class Filter extends Component {
-  state = { filter: '' };
-  //  //  один змінювач на всих
-  changer = event => {
-    const { value } = event.target;
-    //   console.log( event.target.value, "evvvvvvvvvvvvv")
-    this.setState({ filter: value });
-    //   поверненя значення
-    this.props.forFilter({ value });
-  };
 
-  render() {
+ const Filter= ({filterProp}) => {
+  
     return (
       <>
         <input
           name="filter"
           className={css.filter}
           type="text"
-          onChange={this.changer}
-          value={this.state.filter}
+          onChange={filterProp}
           // pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
           placeholder="Введіть ім'я контакту"
           title="Ім'я може містити лише літери, апостроф, тире та пробіли. Наприклад Адріан, Джейкоб Мерсер, Шарль де Бац де Кастельмор д'Артаньян"
@@ -31,10 +20,10 @@ export class Filter extends Component {
       </>
     );
   }
-}
 
-Filter.propTypes = {
-  value: PropTypes.string,
-};
+
+// Filter.propTypes = {
+//   value: PropTypes.string,
+// };
 
 export default Filter;
