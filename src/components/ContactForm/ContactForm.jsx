@@ -43,7 +43,7 @@ export class ContactForm extends Component {
             onChange={this.changer}
             value={this.state.name}
             // pattern= "^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-            //  так чомусь помилка в консолі
+            // ПАТЕРН ВИДАЄ ПОМИЛКУ В КОНСОЛІ
             type="text"
             placeholder="Введіть ім'я"
             title="Ім'я може містити лише літери, апостроф, тире та пробіли. Наприклад Адріан, Джейкоб Мерсер, Шарль де Бац де Кастельмор д'Артаньян"
@@ -62,7 +62,7 @@ export class ContactForm extends Component {
             value={this.state.number}
             name="number"
             // pattern= "\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-            // i так чомусь помилка в консолі
+            // ПАТЕРН ВИДАЄ ПОМИЛКУ В КОНСОЛІ
 
             title="Номер телефону має складатися з цифр і може містити пробіли, тире, круглі дужки та починатися з +"
             required
@@ -79,8 +79,7 @@ export class ContactForm extends Component {
 
 // // прототайпи
 ContactForm.propTypes = {
-  number: PropTypes.number,
-  name: PropTypes.string,
+  formProps: PropTypes.func.isRequired,
 };
 
 export default ContactForm;

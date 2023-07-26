@@ -21,10 +21,10 @@ const ContactList = ({ contacts, deliter }) => {
   );
 };
 
+// проптайпи
 ContactList.propTypes = {
-  number: PropTypes.number,
-  name: PropTypes.string,
-  id: PropTypes.string,
+  contacts: PropTypes.array.isRequired,
+  deliter: PropTypes.func.isRequired,
 };
 
 export default ContactList;

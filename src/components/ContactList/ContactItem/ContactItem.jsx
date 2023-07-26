@@ -20,10 +20,12 @@ const ContactItem = ({ name, number, id, deliter }) => {
     </li>
   );
 };
-
+// проптайпи
 ContactItem.propTypes = {
-  name: PropTypes.string,
-  number: PropTypes.string,
+  name: PropTypes.string.isRequired,
+  number: PropTypes.string.isRequired,
+  deliter: PropTypes.func.isRequired,
+  id: PropTypes.string.isRequired,
 };
 
 export default ContactItem;
