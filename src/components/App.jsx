@@ -16,7 +16,6 @@ let begincontact = [
 export class App extends Component {
   state = {
     contacts: begincontact,
-    // begincontact,
     filter: '',
   };
   // метод для передачі пропсом формі і зберігання з форми
@@ -46,24 +45,14 @@ export class App extends Component {
     const { name, value } = event.target;
     this.setState({ [name]: value });
     // console.log(this.state.filter, "st")
-
-    // для фільтрації
-    const contactJam = begincontact.filter(contact =>
-      contact.name.toLowerCase().includes([value.toLowerCase()])
-    );
-    this.contactFilter(contactJam);
-    //  console.log(contactJam)
   };
 
-  // для оновлення контактів після фільтр процедур
-  contactFilter = contactJam => {
-    if (contactJam) {
-      this.setState(prevState => {
-        return {
-          contacts: contactJam,
-        };
-      });
-    }
+  // фільтрат з недоторканим стейтом контактів
+  felitCon = filter => {
+    const filtrat = this.state.contacts.filter(contact =>
+      contact.name.toLowerCase().includes(this.state.filter.toLowerCase())
+    );
+    return filtrat;
   };
 
   //  для видалення
@@ -90,9 +79,16 @@ export class App extends Component {
           // методпропс фільтрації
           filterProp={this.formFilter}
         />
-        {/* умова рендеру контактів */}
 
-        {this.state.contacts.length > 0 && (
+        {/* умова рендеру контактів */}
+        {/* є фільтрат */}
+        {this.state.filter.length > 0 ? (
+          <ContactList
+            contacts={this.felitCon()}
+            deliter={this.deliter}
+            // немає фільтрату
+          />
+        ) : (
           <ContactList contacts={this.state.contacts} deliter={this.deliter} />
         )}
       </div>
